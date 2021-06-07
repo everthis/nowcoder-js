@@ -6,15 +6,10 @@
  * @return int整型
  */
 function findKth(a, n, K) {
-  const list = a
-  let k = K
-  const len = list.length
-  let lo = 0
-  let hi = len - 1
-  let pivot = 0
-  let t = len - k
+  let lo = 0, hi = n - 1
+  const t = n - K
   while(lo < hi) {
-    pivot = partition(list, lo, hi)
+    const pivot = partition(a, lo, hi)
     if(pivot === t) {
       break
     } else if(pivot < t) {
@@ -24,7 +19,7 @@ function findKth(a, n, K) {
     }
   }
   
-  return list[t]
+  return a[t]
 }
 
 function partition(arr, s, e) {
