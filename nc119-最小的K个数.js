@@ -135,3 +135,48 @@ function binaryInsert(array, insertValue, comparator = (a, b) => a - b) {
 module.exports = {
   GetLeastNumbers_Solution : GetLeastNumbers_Solution
 };
+
+// another
+
+function GetLeastNumbers_Solution(input, k) {
+  const arr = []
+  if(k > input.length) return arr
+  for(let e of input) {
+    binaryInsert(arr, e, (a, b) => a - b)
+    if(arr.length > k) arr.pop()
+  }
+  return arr
+}
+
+function binaryInsert(array, value, compareFn) {
+  const index = binarySearch(array, value, compareFn);
+  if (index < 0) {
+    array.splice(-(index + 1), 0, value);
+  } else {
+    array.splice(index, 0, value)
+  }
+  return false;
+};
+function binarySearch(arr, target, compareFn) {
+  let left = 0;  // inclusive
+  let right = arr.length;  // exclusive
+  let found;
+  while (left < right) {
+    const middle = left + ((right - left) >> 1);
+    const compareResult = compareFn(target, arr[middle]);
+    if (compareResult > 0) {
+      left = middle + 1;
+    } else {
+      right = middle;
+      // We are looking for the lowest index so we can't return immediately.
+      found = !compareResult;
+    }
+  }
+  // left is the index if found, or the insertion point otherwise.
+  // ~left is a shorthand for -left - 1.
+  return found ? left : ~left;
+};
+
+module.exports = {
+  GetLeastNumbers_Solution : GetLeastNumbers_Solution
+};
