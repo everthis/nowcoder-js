@@ -21,3 +21,28 @@ function maxLength( arr ) {
 module.exports = {
     maxLength : maxLength
 };
+
+// another
+
+/**
+ * 
+ * @param arr int整型一维数组 the array
+ * @return int整型
+ */
+function maxLength( arr ) {
+  const map = new Map()
+  let res = 0
+  for(let e of arr) {
+    while(map.has(e)) {
+      const it = map[Symbol.iterator]()
+      const key = it.next().value[0]
+      map.delete(key)
+    }
+    map.set(e, 1)
+    res = Math.max(res, map.size)
+  }
+  return res
+}
+module.exports = {
+    maxLength : maxLength
+};
