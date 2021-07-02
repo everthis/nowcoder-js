@@ -24,3 +24,17 @@ function NumberOf1(n) {
 module.exports = {
     NumberOf1 : NumberOf1
 };
+
+// another
+
+function NumberOf1(n) {
+  let res = 0
+  while(n != 0) {
+    if(n & 1) res++
+    n >>>= 1
+  }
+  return res
+}
+module.exports = {
+    NumberOf1 : NumberOf1
+};
